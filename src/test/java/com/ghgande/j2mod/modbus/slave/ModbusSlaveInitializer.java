@@ -41,14 +41,14 @@ public class ModbusSlaveInitializer {
 					
 					for (AddressMap am : addressMapList) {
 						System.out.println(am);
-						if (am.getType().equals("DigitalIn")) {
-							spi.addDigitalIn(am.getAddress(), new SimpleDigitalIn(am.getValue() == 1));
-						} else if (am.getType().equals("DigitalOut")) {
+						if (am.getType().equals("Coils")) {
 							spi.addDigitalOut(am.getAddress(), new SimpleDigitalOut(am.getValue() == 1));
-						} else if (am.getType().equals("HoldingRegister")) {
-							spi.addRegister(am.getAddress(), new SimpleRegister(am.getValue()));
-						} else if (am.getType().equals("InputRegister")) {
+						} else if (am.getType().equals("DiscreteInputs")) {
+							spi.addDigitalIn(am.getAddress(), new SimpleDigitalIn(am.getValue() == 1));
+						} else if (am.getType().equals("InputRegisters")) {
 							spi.addInputRegister(am.getAddress(), new SimpleInputRegister(am.getValue()));
+						} else if (am.getType().equals("HoldingRegisters")) {
+							spi.addRegister(am.getAddress(), new SimpleRegister(am.getValue()));
 						}
 					}
 
